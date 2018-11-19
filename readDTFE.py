@@ -1,4 +1,7 @@
-""" DTFE read to numpy """
+""" DTFE read to numpy
+Ran using: ./DTFE /home/nes/Desktop/FlipFlop/Nesar/Analysis/GadgetSnapshots/100Mpc128/snapshot_050 ./output_FlipFlop_Sergei_100mpc_snapshot50 --grid 128
+
+"""
 
 import matplotlib.pylab as plt
 import numpy as np
@@ -23,9 +26,9 @@ DTFEden = np.reshape(a, (size_fact, size_fact, size_fact), order = 'C')
 np.save("../HACC/Data/DensityDTFE_051_"+str(refFactor), a)
 
 
-CICden = np.load("../HACC/Data/DensityCIC_051_"+str(refFactor)+'.npy')
+#CICden = np.load("../HACC/Data/DensityCIC_051_"+str(refFactor)+'.npy')
 
-nstream = np.load("../HACC/Data/numField_051_"+str(refFactor)+'.npy')
+#nstream = np.load("../HACC/Data/numField_051_"+str(refFactor)+'.npy')
 
 
 f, ax = plt.subplots(4,3, figsize = (14,20), sharex = True, sharey = True)
@@ -55,23 +58,23 @@ for i in range(4):
     plt.yticks( ticksLoc, ticksLabel  )
     plt.xticks( ticksLoc, ticksLabel  )
     
-    plt.sca(ax[i,1])
-    c = (CICden > CICcut[i])
-    ax[i,1].imshow(c[5,:,:], label = CICcut[i], cmap = cmap)
-    plt.title(r'$\rho_{CIC}/\rho_{b} > %0.2f$'%CICcut[i])
+    #plt.sca(ax[i,1])
+    #c = (CICden > CICcut[i])
+    #ax[i,1].imshow(c[5,:,:], label = CICcut[i], cmap = cmap)
+    #plt.title(r'$\rho_{CIC}/\rho_{b} > %0.2f$'%CICcut[i])
     #plt.legend(loc = 'bottom right')
-    plt.yticks( ticksLoc, ticksLabel  )
-    plt.xticks( ticksLoc, ticksLabel  )
+    #plt.yticks( ticksLoc, ticksLabel  )
+    #plt.xticks( ticksLoc, ticksLabel  )
 
     #
-    plt.sca(ax[i,2])
-    d = (nstream > nstrCut[i])
-    ax[i,2].imshow(d[5,:,:], label = nstrCut[i], cmap = cmap)
-    plt.title(r'$n_{str} > %d$'%nstrCut[i])
+    #plt.sca(ax[i,2])
+    #d = (nstream > nstrCut[i])
+    #ax[i,2].imshow(d[5,:,:], label = nstrCut[i], cmap = cmap)
+    #plt.title(r'$n_{str} > %d$'%nstrCut[i])
     #ax[i,2].legend(loc = 'bottom right', title = 'ABCD')
     
-    plt.yticks( ticksLoc, ticksLabel  )
-    plt.xticks( ticksLoc, ticksLabel  )
+    #plt.yticks( ticksLoc, ticksLabel  )
+    #plt.xticks( ticksLoc, ticksLabel  )
 
 
 
