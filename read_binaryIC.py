@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pylab as plt
 
 
-def load_file(fileHead):
+def load_file_truck(fileHead):
     dt = np.dtype("f4, f4, f4, f4, f4, f4, f4, i8")
     #dt = np.dtype([('x', f4), ('vx', f4), ('y', f4), ('vy', f4), ('z', f4), ('vz', f4), ('phi', f4), ('idx', i8)])
     num_part = 128**3
@@ -16,12 +16,21 @@ def load_file(fileHead):
 
     xyz = np.zeros(shape=(3))
     vxvyvz = np.zeros(shape=(3))
+
     x = []
     y = []
     z = []
     vx = []
     vy = []
     vz = []
+    qx = []
+    qy = []
+    qz = []
+    sx = []
+    sy = []
+    sz = []
+
+
 
     phi = []
     idx = []
@@ -35,9 +44,15 @@ def load_file(fileHead):
         vx = np.append( vx, np.array(np_file['f1'])  )
         vy = np.append( vy, np.array(np_file['f3'])  )
         vz = np.append( vz, np.array(np_file['f5'])  )
-        idx = np.append( idx, np.array(np_file['f7']) )
-        phi = np.append( phi, np.array(np_file['f6']) )
+        
+        qx = np.append( vx, np.array(np_file['f1'])  )
+        qy = np.append( vy, np.array(np_file['f3'])  )
+        qz = np.append( vz, np.array(np_file['f5'])  )
 
+        sx = np.append( vx, np.array(np_file['f1'])  )
+        sy = np.append( vy, np.array(np_file['f3'])  )
+        sz = np.append( vz, np.array(np_file['f5'])  )
+        idx = np.append( idx, np.array(np_file['f7']) )
 
 
     print tot_entry
