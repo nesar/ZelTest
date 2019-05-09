@@ -8,7 +8,49 @@ import numpy as np
 import matplotlib.pylab as plt
 
 
-def load_file_truck(fileHead):
+
+def load_file(fileHead):
+    dt = np.dtype("f4, f4, f4, f4, f4, f4, f4, i8")
+    #dt = np.dtype([('x', f4), ('vx', f4), ('y', f4), ('vy', f4), ('z', f4), ('vz', f4), ('phi',f4), ('idx', i8)])
+    num_part = 128**3
+    tot_entry = 0
+    xyz = np.zeros(shape=(3))
+    vxvyvz = np.zeros(shape=(3))
+
+    x = []
+    y = []
+    z = []
+    vx = []
+    vy = []
+    vz = []
+
+
+    phi = []
+    idx = []
+
+    for fidx in range(8):
+        np_file =  np.fromfile(fileHead + str(fidx),  dtype=dt)
+        tot_entry = tot_entry + np.shape(np_file)[0]
+        x = np.append( x, np.array(np_file['f0'])  )
+        y = np.append( y, np.array(np_file['f2'])  )
+        z = np.append( z, np.array(np_file['f4'])  )
+        vx = np.append( vx, np.array(np_file['f1'])  )
+        vy = np.append( vy, np.array(np_file['f3'])  )
+        vz = np.append( vz, np.array(np_file['f5'])  )
+        idx = np.append( idx, np.array(np_file['f7']) )
+        phi = np.append( phi, np.array(np_file['f6']) )
+
+
+    print tot_entry
+    print(10*'-')
+    return idx, x, y, z, vx, vy, vz
+
+
+
+
+
+
+def load_file_za(fileHead):
     dt = np.dtype("f4, f4, f4, f4, f4, f4, f4, i8")
     #dt = np.dtype([('x', f4), ('vx', f4), ('y', f4), ('vy', f4), ('z', f4), ('vz', f4), ('phi', f4), ('idx', i8)])
     num_part = 128**3
